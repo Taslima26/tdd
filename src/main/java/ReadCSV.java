@@ -22,8 +22,7 @@ public class ReadCSV {
     public static List<HomeOwners> readHomeOwnerFromCSV(String fileName) {
         List<HomeOwners> homeOwners = new ArrayList<>();
         Path pathToFile = Paths.get(fileName);
-        try (BufferedReader br = Files.newBufferedReader(pathToFile,
-                StandardCharsets.US_ASCII)) {
+        try (BufferedReader br = Files.newBufferedReader(pathToFile)) {
             String line = br.readLine();
             while (line != null) {
                 String[] attributes = line.split(",");
@@ -39,17 +38,23 @@ public class ReadCSV {
     }
 
     private static HomeOwners createHomeowner(String[] metadata) {
+        String data = metadata[0];
+        String[] splited = data.split("\\s+");
+        if (splited.length >= 3) {
+            String title = splited[0];
+            String firstName = splited[1];
+            String lastName = splited[2];
+            return new HomeOwners(title, firstName, lastName);
+
+        }
+        else {
+           return null;
+        }
 
 
-        String firstName= metadata[0];
-        String title=metadata[0];
-        String inital=metadata[0];
-        String lastName=metadata[0];
-
-
-
-        return new HomeOwners(title,firstName,inital,lastName);
     }
+
+
 
 
 }

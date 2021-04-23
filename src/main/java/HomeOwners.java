@@ -12,9 +12,11 @@ public class HomeOwners {
 
     private String lastName;
 
-
-
-
+    public HomeOwners(String title, String firstName, String lastName) {
+        this.title=title;
+        this.firstName=firstName;
+        this.lastName=lastName;
+    }
 
 
     public String getTitle() {
